@@ -1,0 +1,16 @@
+[package]
+name = "aoc22"
+version = "0.1.0"
+authors = ["Michael Holmes <holmesmr@users.github.com>"]
+edition = "2021"
+
+[dependencies]
+anyhow = "1"
+itertools = "0.10"
+
+[dev-dependencies]
+criterion = "0.4"
+
+[[bench]]
+name = "day01"
+harness = false

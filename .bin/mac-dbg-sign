@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+mode=$1
+day=$2
+part=$3
+
+if ! shift 3 &> /dev/null; then
+	echo "usage: $(basename $0) <mode> <day> <part>"
+	exit 1
+fi
+
+codesign -s - -v -f --entitlements "misc/macos/debug-entitlements.plist" "target/${mode}/day${day}_${part}"

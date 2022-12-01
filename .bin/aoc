@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+cmd=$1
+day=$2
+part=$3
+
+if ! shift 3 &> /dev/null; then
+	echo "usage: $(basename $0) <cmd> <day> <part> [cargo_args]"
+	exit 1
+fi
+
+bin="day${day}_${part}"
+
+if [ "${cmd}" = "run" ]; then
+  cargo "${cmd}" "$@" --bin "${bin}" < "inputs/day${day}.txt"
+else
+  cargo "${cmd}" "$@" --bin "${bin}"
+fi

@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+day=$1
+part=$2
+
+if ! shift 2 &> /dev/null; then
+	echo "usage: $(basename $0) <day> <part>"
+	exit 1
+fi
+
+# build and debug prep the target binary
+aoc build "${day}" "${part}" --release
+mac-dbg-sign release "${day}" "${part}"
+
+xcrun xctrace record --target-stdin "inputs/day${day}.txt" --template 'Allocations' --launch -- "target/release/day${day}_${part}"
